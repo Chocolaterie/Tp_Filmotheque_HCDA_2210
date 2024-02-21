@@ -26,7 +26,7 @@ public class MovieController {
 		model.addAttribute("movies", movies);
 		
 		// 3 :: Afficher la vue
-		return "show-articles-page";
+		return "show-movies-page";
 	}
 	
 	@GetMapping("movie/{id}")
@@ -41,7 +41,7 @@ public class MovieController {
 		model.addAttribute("movie", movie);
 		
 		// 4 :: Afficher la vue
-		return "show-article-detail-page";
+		return "show-movie-detail-page";
 		
 	}
 }

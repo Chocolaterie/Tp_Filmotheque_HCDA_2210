@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<div th:include="includes/header"></div>
+
+	<!-- CONTENT PAGE -->
+	<section class="uk-section">
+		<div class="uk-container uk-container-small">
+		
+			<!-- Breacrumb -->
+			<ul class="uk-breadcrumb">
+			    <li><a href="/">Home</a></li>
+			    <li><span>Films</span></li>
+			</ul>
+
+			<h1>La liste des Films</h1>
+
+			<div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
+				<!-- Pour chaque films -->
+				<div th:each="movie : ${movies}" style="padding: 1rem;">
+					<div class="uk-card uk-card-default uk-card-body">
+						<h3 class="uk-card-title" th:text="${movie.title}"></h3>
+						<p th:text="${movie.year}"></p>
+						<p th:text="${movie.duration}"></p>
+						<p th:text="${movie.synopsis}"></p>
+						
+						<a class="uk-button uk-button-default" th:href="@{'/movie/' + ${movie.id}}">Voir détail</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ./CONTENT PAGE -->
+
+	<div th:include="includes/footer"></div>
+</body>
+</html>
