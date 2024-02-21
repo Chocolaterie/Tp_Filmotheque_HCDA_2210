@@ -31,7 +31,19 @@
 			<div class="uk-navbar-center">
 				<a class="uk-navbar-item uk-logo" href="#">Filmotheque</a>
 			</div>
-			<div class="uk-navbar-right"></div>
+			<div class="uk-navbar-right">
+				<!-- Si connecté (si loggedUser en session) -->
+				<div th:if="${ loggedUser != null }">
+					<ul class="uk-navbar-nav">
+						<li>Vous êtes connecté(e) <span th:text="${loggedUser}" ></span></li>
+						<li><a href="/logout">Se deconnecter</a></li>
+					</ul>
+				</div>
+				<!-- Si pas connecté -->
+				<div th:if="${ loggedUser == null }">
+					<a class="uk-button uk-button-default" href="/login">Se connecter</a>
+				</div>
+			</div>
 		</nav>
 	</div>
 </header>

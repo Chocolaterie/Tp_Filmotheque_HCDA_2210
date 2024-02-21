@@ -7,15 +7,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.filmotheque.bll.MovieManager;
 import com.filmotheque.bo.Movie;
 
 @Controller
+@SessionAttributes({"loggedUser"})
 public class MovieController {
 
 	@Autowired
 	MovieManager movieManager;
+	
+	@GetMapping("/")
+	public String showMovies() {
+		// Afficher la vue
+		return "index";
+	}
 	
 	@GetMapping("movies")
 	public String showMovies(Model model) {
@@ -31,6 +39,11 @@ public class MovieController {
 	
 	@GetMapping("movie/{id}")
 	public String showMovieDetail(@PathVariable("id") String idParam, Model model) {
+		// Tester si pas connecté(e)
+		if (model.getAttribute("loggedUser") == null) {
+			return "redirect:/";
+		}
+		
 		// 1 :: Récupérer l'id en long 
 		long id = Long.parseLong(idParam);
 		
