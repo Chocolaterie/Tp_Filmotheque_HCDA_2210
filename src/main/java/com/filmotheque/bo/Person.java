@@ -58,5 +58,9 @@ public abstract class Person {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	
+	public String displayWholeName() {
+		return String.format("%s %s", lastname, firstname);
+	}
 
 }

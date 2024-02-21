@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Accueil</title>
+
+<link rel="stylesheet" href="/vendor/uikit/css/uikit.min.css" />
+<script type="text/javascript" src="/vendor/uikit/js/uikit.min.js"></script>
+<script type="text/javascript" src="/vendor/uikit/js/uikit-icons.min.js"></script>
 </head>
 <body>
+	<!--HEADER-->
+	<header
+		style="background-color: #fff; border-bottom: 1px solid #f2f2f2"
+		data-uk-sticky="show-on-up: true; animation: uk-animation-slide-top">
+		<div class="uk-container">
+			<nav id="navbar" data-uk-navbar="mode: click;">
+				<div class="uk-navbar-left">
+					<ul class="uk-navbar-nav">
 
+						<li class="uk-visible@s">
+							<div>
+								<a class="uk-navbar-toggle" href="#"></a>
+								<div class="uk-drop"
+									data-uk-drop="mode: click; pos: right-center; offset: 0; boundary: #navbar">
+
+								</div>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+				<div class="uk-navbar-center">
+					<a class="uk-navbar-item uk-logo" href="#">Filmotheque</a>
+				</div>
+				<div class="uk-navbar-right"></div>
+			</nav>
+		</div>
+	</header>
+	<!--/HEADER-->
+
+	<!-- CONTENT PAGE -->
+	<section class="uk-section">
+		<div class="uk-container uk-container-small">
+			<h1>Bienvenue sur le site</h1>
+
+			<a class="uk-button uk-button-default" href="/movies">Voir les films</a>
+		</div>
+	</section>
+	<!-- ./CONTENT PAGE -->
+
+	<!--FOOTER-->
+	<footer class="uk-section uk-section-small" style="margin-bottom: 60px">
+		<div class="uk-container">
+			<p class="uk-text-small uk-text-center">
+				Copyright 2019 - <a href="https://github.com/zzseba78/Kick-Off">Created
+					by KickOff</a> | Built with <a href="http://getuikit.com"
+					title="Visit UIkit 3 site" target="_blank" data-uk-tooltip><span
+					data-uk-icon="uikit"></span></a>
+			</p>
+		</div>
+	</footer>
+	<!--/FOOTER-->
 </body>
 </html>
