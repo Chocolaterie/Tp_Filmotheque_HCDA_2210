@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import com.filmotheque.bll.MovieManager;
 import com.filmotheque.bo.Genre;
 import com.filmotheque.bo.Movie;
 import com.filmotheque.bo.Participant;
+
+import jakarta.validation.Valid;
 
 @Controller
 @SessionAttributes({"loggedUser"})
@@ -61,6 +64,16 @@ public class MovieController {
 		return "show-movie-detail-page";
 	}
 	
+	public void sendOptionsMovieForm(Model model) {
+		// -- la liste des genres à afficher dans le select genre
+		List<Genre> genres = movieManager.getGenres();
+		model.addAttribute("genres", genres);
+		
+		// -- la liste des participants à afficher dans le select (realisateur/acteurs)
+		List<Participant> participants = movieManager.getParticipants();
+		model.addAttribute("participants", participants);
+	}
+	
 	@GetMapping("movie-form")
 	public String showMovieForm(Model model) {
 		// 1 :: Préparer une film vide par défaut
@@ -70,14 +83,8 @@ public class MovieController {
 		model.addAttribute("movie", movie);
 		
 		// Envoyer dans le formulaire la liste des données à afficher dans les select
-		
-		// -- la liste des genres à afficher dans le select genre
-		List<Genre> genres = movieManager.getGenres();
-		model.addAttribute("genres", genres);
-		
-		// -- la liste des participants à afficher dans le select (realisateur/acteurs)
-		List<Participant> participants = movieManager.getParticipants();
-		model.addAttribute("participants", participants);
+		sendOptionsMovieForm(model);
+	
 		
 		// Afficher la vue (donc le formulaire)
 		return "movie-form-page";
@@ -89,7 +96,16 @@ public class MovieController {
 	 * @return
 	 */
 	@PostMapping("movie-form")
-	public String postMovieForm(@ModelAttribute("movie") Movie movie) {
-		return "movie-form-page";
+	public String postMovieForm(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model) {
+		// si erreur on reste sur la page
+		if (bindingResult.hasErrors()) {
+			
+			// Envoyer dans le formulaire la liste des données à afficher dans les select
+			sendOptionsMovieForm(model);
+			
+			return "movie-form-page";
+		}
+
+		return "redirect:/movies";
 	}
 }

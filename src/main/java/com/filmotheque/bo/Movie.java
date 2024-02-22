@@ -3,12 +3,24 @@ package com.filmotheque.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.constraints.Range;
+
+import jakarta.validation.constraints.NotBlank;
+
 public class Movie {
 
 	private long id;
+	
+	@NotBlank(message = "Le titre est obligatoire")
 	private String title;
+	
+	@Range(min=1900, message = "Année n'est pas valide")
 	private int year;
+	
+	@Range(min=1, message = "Le film n'est pas assez long")
 	private int duration;
+	
+	@NotBlank(message = "Le synopsis est obligatoire")
 	private String synopsis;
 	
 	private Participant realisator;

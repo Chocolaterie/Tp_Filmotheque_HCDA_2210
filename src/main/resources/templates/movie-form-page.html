@@ -25,6 +25,8 @@
                     <div class="uk-form-controls">
                         <input class="uk-input" type="text" th:field="*{title}" placeholder="Title"
                             aria-label="Input">
+                        <!-- Error : title -->
+						<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="uk-text-danger"></span>
                     </div>
                 </div>
                 
@@ -64,6 +66,8 @@
                     <div class="uk-form-controls">
                         <input class="uk-input" type="number" th:field="*{year}" placeholder="Année"
                             aria-label="Input">
+                        <!-- Error : year -->
+						<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="uk-text-danger"></span>
                     </div>
                 </div>
                 
@@ -73,6 +77,8 @@
                     <div class="uk-form-controls">
                         <input class="uk-input" type="number" th:field="*{duration}" placeholder="Durée"
                             aria-label="Input">
+                          <!-- Error : duration -->
+						<span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" class="uk-text-danger"></span>
                     </div>
                 </div>
                 
@@ -81,6 +87,8 @@
                     <div class="uk-form-label">Synopsis</div>
                     <div class="uk-form-controls">
                         <textarea class="uk-textarea" th:field="*{synopsis}" placeholder="Synopsis"></textarea>
+                    	  <!-- Error : synopsis -->
+						<span th:if="${#fields.hasErrors('synopsis')}" th:errors="*{synopsis}" class="uk-text-danger"></span>
                     </div>
                 </div>
                 
