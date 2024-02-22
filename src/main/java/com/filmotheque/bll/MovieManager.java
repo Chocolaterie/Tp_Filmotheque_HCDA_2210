@@ -52,4 +52,13 @@ public class MovieManager {
 	public List<Participant> getParticipants(){
 		return daoMovie.findParticipants();
 	}
+	
+	public Genre getGenreById(long id) {
+		return daoMovie.findGenreById(id);
+	}
+	
+	public Participant getParticipantById(long id) {
+		return daoMovie.findParticipantById(id);
+	}
+	
 }

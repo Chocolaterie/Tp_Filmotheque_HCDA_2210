@@ -58,7 +58,7 @@ public class DAOMovieMock implements IDAOMovie {
 	}
 
 	@Override
-	public Genre consulterGenreParId(long id) {
+	public Genre findGenreById(long id) {
 		return lstGenres.stream().filter(item -> item.getId() == id).findAny().orElse(null);
 	}
 

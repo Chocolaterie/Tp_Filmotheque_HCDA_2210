@@ -17,7 +17,7 @@ public interface IDAOMovie {
 	
 	public List<Participant> findParticipants();
 	
-	public Genre consulterGenreParId(long id);
+	public Genre findGenreById(long id);
 	
 	public Participant findParticipantById(long id);
 	

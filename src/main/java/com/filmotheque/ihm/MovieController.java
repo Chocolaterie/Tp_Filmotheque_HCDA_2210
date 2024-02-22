@@ -97,6 +97,15 @@ public class MovieController {
 	 */
 	@PostMapping("movie-form")
 	public String postMovieForm(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model) {
+		// Dans tout les cas afficher dans la console
+		System.out.println(movie.getGenre().getTitle());
+		
+		System.out.println(movie.getRealisator().getLastname());
+		
+		for (Participant actor : movie.getActors()) {
+			System.out.println(actor.getLastname());
+		}
+
 		// si erreur on reste sur la page
 		if (bindingResult.hasErrors()) {
 			
