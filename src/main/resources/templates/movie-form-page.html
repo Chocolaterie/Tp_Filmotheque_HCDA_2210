@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<div th:include="includes/header"></div>
+	
+	<!-- CONTENT PAGE -->
+	<section class="uk-section">
+		<div class="uk-container uk-container-small">
+		
+			<!-- Breacrumb -->
+			<ul class="uk-breadcrumb">
+			    <li><a href="/">Home</a></li>
+			    <li><a href="/movies">Films</a></li>
+		       	<li><span>Formulaire</span></li>
+			</ul>
+			
+			<h1>Formulaire Film</h1>
+
+			<!-- Formulaire -->
+			<form th:object="${movie}" method="post" action="/movie-form">
+		
+				<!-- Champ : Title -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Titre</div>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="text" th:field="*{title}" placeholder="Title"
+                            aria-label="Input">
+                    </div>
+                </div>
+                
+                <!-- Champ : Genre -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Genre</div>
+                    <div class="uk-form-controls">
+                        <select th:field="*{genre}" class="uk-select">
+                        	<option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.title}"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Champ : Realisateur -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Realisateur</div>
+                    <div class="uk-form-controls">
+                        <select th:field="*{realisator}" class="uk-select">
+                        	<option th:each="participant : ${participants}" th:value="${participant.id}" th:text="${participant.displayWholeName()}"></option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Champ : Acteurs -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Acteurs</div>
+                    <div class="uk-form-controls">
+                        <select th:field="*{actors}" class="uk-select" multiple>
+                        	<option th:each="participant : ${participants}" th:value="${participant.id}" th:text="${participant.displayWholeName()}"></option>
+                        </select>
+                    </div>
+                </div>
+                
+               	<!-- Champ : Year -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Année</div>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="number" th:field="*{year}" placeholder="Année"
+                            aria-label="Input">
+                    </div>
+                </div>
+                
+                <!-- Champ : Durée -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Durée</div>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="number" th:field="*{duration}" placeholder="Durée"
+                            aria-label="Input">
+                    </div>
+                </div>
+                
+                 <!-- Champ : Synopsis -->
+                <div class="uk-margin">
+                    <div class="uk-form-label">Synopsis</div>
+                    <div class="uk-form-controls">
+                        <textarea class="uk-textarea" th:field="*{synopsis}" placeholder="Synopsis"></textarea>
+                    </div>
+                </div>
+                
+			    <!-- Submit -->
+		        <div class="uk-margin" uk-margin>
+			        <button class="uk-button uk-button-default">Enregister</button>
+			    </div>
+		        
+			</form>
+		</div>
+	</section>
+	<!-- ./CONTENT PAGE -->
+
+	<div th:include="includes/footer"></div>
+</html>

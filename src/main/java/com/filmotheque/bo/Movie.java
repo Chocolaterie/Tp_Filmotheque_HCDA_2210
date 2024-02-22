@@ -25,6 +25,11 @@ public class Movie {
 		this.duration = duration;
 		this.synopsis = synopsis;
 	}
+	
+	public Movie() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * @return the id
 	 */

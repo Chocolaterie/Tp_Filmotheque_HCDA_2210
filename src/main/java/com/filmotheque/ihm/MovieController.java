@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.filmotheque.bll.MovieManager;
+import com.filmotheque.bo.Genre;
 import com.filmotheque.bo.Movie;
+import com.filmotheque.bo.Participant;
 
 @Controller
 @SessionAttributes({"loggedUser"})
@@ -55,6 +59,37 @@ public class MovieController {
 		
 		// 4 :: Afficher la vue
 		return "show-movie-detail-page";
+	}
+	
+	@GetMapping("movie-form")
+	public String showMovieForm(Model model) {
+		// 1 :: Préparer une film vide par défaut
+		Movie movie = new Movie();
 		
+		// 2 : Envoyer le film dans la vue
+		model.addAttribute("movie", movie);
+		
+		// Envoyer dans le formulaire la liste des données à afficher dans les select
+		
+		// -- la liste des genres à afficher dans le select genre
+		List<Genre> genres = movieManager.getGenres();
+		model.addAttribute("genres", genres);
+		
+		// -- la liste des participants à afficher dans le select (realisateur/acteurs)
+		List<Participant> participants = movieManager.getParticipants();
+		model.addAttribute("participants", participants);
+		
+		// Afficher la vue (donc le formulaire)
+		return "movie-form-page";
+	}
+	
+	/**
+	 * TODO
+	 * @param movie
+	 * @return
+	 */
+	@PostMapping("movie-form")
+	public String postMovieForm(@ModelAttribute("movie") Movie movie) {
+		return "movie-form-page";
 	}
 }
