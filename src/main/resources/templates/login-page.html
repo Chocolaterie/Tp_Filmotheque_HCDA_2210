@@ -8,7 +8,30 @@
 		<div class="uk-container uk-container-small">
 			<h1>Se connecter</h1>
 
-			<a class="uk-button uk-button-default" href="/login-test">Connexion</a>
+			<!-- Formulaire member (pour login) -->
+			<form th:object="${member}" method="post" action="/login">
+				<!-- Email -->
+			  	<div class="uk-margin">
+			        <div class="uk-inline">
+			            <span class="uk-form-icon" uk-icon="icon: user"></span>
+			            <input th:field="*{email}" class="uk-input" type="text" aria-label="Not clickable icon">
+			        </div>
+			    </div>
+		        
+		        <!-- Password -->
+	          	<div class="uk-margin">
+			        <div class="uk-inline">
+			            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+			            <input th:field="*{password}" class="uk-input" type="password" aria-label="Not clickable icon">
+			        </div>
+			    </div>
+			    
+			    <!-- Submit -->
+		        <div class="uk-margin" uk-margin>
+			        <button class="uk-button uk-button-default">Connexion</button>
+			    </div>
+		        
+			</form>
 		</div>
 	</section>
 	<!-- ./CONTENT PAGE -->

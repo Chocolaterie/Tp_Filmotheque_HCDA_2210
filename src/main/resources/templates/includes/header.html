@@ -35,7 +35,7 @@
 				<!-- Si connecté (si loggedUser en session) -->
 				<div th:if="${ loggedUser != null }">
 					<ul class="uk-navbar-nav">
-						<li>Vous êtes connecté(e) <span th:text="${loggedUser}" ></span></li>
+						<li>Vous êtes connecté(e) <span th:text="${loggedUser.email}" ></span></li>
 						<li><a href="/logout">Se deconnecter</a></li>
 					</ul>
 				</div>
