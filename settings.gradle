@@ -1,1 +1,6 @@
 rootProject.name = 'tp_filmotheque'
+
+System.properties['http.proxyHost']='http://proxy-sh.ad.campus-eni.fr'
+System.properties['http.proxyPort']=8080
+System.properties['https.proxyHost']='http://proxy-sh.ad.campus-eni.fr'
+System.properties['https.proxyPort'] =8080

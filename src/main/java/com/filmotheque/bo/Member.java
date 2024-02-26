@@ -1,10 +1,14 @@
 package com.filmotheque.bo;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Member extends Person {
 
 	private String email;
 	private String password;
-	private boolean isAdmin;
+	
+	private Boolean isAdmin = false;
 	
 	public Member() {
 	}
@@ -43,13 +47,13 @@ public class Member extends Person {
 	/**
 	 * @return the isAdmin
 	 */
-	public boolean isAdmin() {
+	public Boolean isAdmin() {
 		return isAdmin;
 	}
 	/**
 	 * @param isAdmin the isAdmin to set
 	 */
-	public void setAdmin(boolean isAdmin) {
+	public void setAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 }

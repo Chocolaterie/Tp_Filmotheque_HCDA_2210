@@ -1,11 +1,22 @@
 package com.filmotheque.bo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Avis {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	private int note; 
 	private String comment;
 	
+	@ManyToOne
 	private Member member;
 	
 	public Avis(long id, int note, String comment) {
