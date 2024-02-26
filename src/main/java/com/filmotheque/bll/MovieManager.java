@@ -61,4 +61,11 @@ public class MovieManager {
 		return daoMovie.findParticipantById(id);
 	}
 	
+	/**
+	 * Service pour sauvegarder un film
+	 * @param movie
+	 */
+	public void saveMovie(Movie movie) {
+		daoMovie.saveMovie(movie);
+	}
 }

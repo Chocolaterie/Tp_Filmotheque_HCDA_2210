@@ -32,6 +32,11 @@ public class MovieController {
 		return "index";
 	}
 	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("movies")
 	public String showMovies(Model model) {
 		// 1 :: Récupérer les données via le service/bll/manager
@@ -75,9 +80,19 @@ public class MovieController {
 	}
 	
 	@GetMapping("movie-form")
-	public String showMovieForm(Model model) {
+	public String showDefaultMovieForm(Model model) {
+		return showMovieForm(null, model);
+	}
+	
+	@GetMapping("movie-form/{id}")
+	public String showMovieForm(@PathVariable("id") Long movieId, Model model) {
 		// 1 :: Préparer une film vide par défaut
 		Movie movie = new Movie();
+		
+		// PS : Si c'est une édition, donc si id existant
+		if (movieId != null) {
+			movie = movieManager.getMovieById(movieId);
+		}
 		
 		// 2 : Envoyer le film dans la vue
 		model.addAttribute("movie", movie);
@@ -85,7 +100,6 @@ public class MovieController {
 		// Envoyer dans le formulaire la liste des données à afficher dans les select
 		sendOptionsMovieForm(model);
 	
-		
 		// Afficher la vue (donc le formulaire)
 		return "movie-form-page";
 	}
@@ -97,16 +111,7 @@ public class MovieController {
 	 */
 	@PostMapping("movie-form")
 	public String postMovieForm(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model) {
-		// Dans tout les cas afficher dans la console
-		System.out.println(movie.getGenre().getTitle());
-		
-		System.out.println(movie.getRealisator().getLastname());
-		
-		for (Participant actor : movie.getActors()) {
-			System.out.println(actor.getLastname());
-		}
-
-		// si erreur on reste sur la page
+		// si erreur on reste sur la page - controle de surface
 		if (bindingResult.hasErrors()) {
 			
 			// Envoyer dans le formulaire la liste des données à afficher dans les select
@@ -115,6 +120,9 @@ public class MovieController {
 			return "movie-form-page";
 		}
 
+		// sauvegarder le film
+		movieManager.saveMovie(movie);
+		
 		return "redirect:/movies";
 	}
 }

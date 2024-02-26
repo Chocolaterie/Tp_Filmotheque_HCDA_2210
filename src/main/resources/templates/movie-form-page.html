@@ -19,6 +19,9 @@
 			<!-- Formulaire -->
 			<form th:object="${movie}" method="post" action="/movie-form">
 		
+				<!-- ID Caché -->
+				<input type="hidden" th:field="*{id}" />
+				
 				<!-- Champ : Title -->
                 <div class="uk-margin">
                     <div class="uk-form-label">Titre</div>
