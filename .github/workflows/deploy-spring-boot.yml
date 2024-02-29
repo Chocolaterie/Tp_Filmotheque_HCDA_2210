@@ -51,4 +51,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.ROOT }}
         password: ${{ secrets.PASSWORD }}
-        script: systemctl start spring_server
+        script: systemctl restart spring_server
