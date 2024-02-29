@@ -28,8 +28,18 @@ jobs:
       run: chmod +x ./gradlew ; ./gradlew build
 
     - name: Deploy to Droplet
+      uses: appleboy/scp-action@master
+      with:
+        host: 157.245.45.203
+        username: root
+        password: e8]2Qq7wV;>=a7D
+        source: "build/libs/tp_filmotheque-0.0.1-SNAPSHOT.jar"
+        target: /home/
+
+    - name: Run to Droplet
       uses: appleboy/ssh-action@master
       with:
         host: 157.245.45.203
         username: root
         password: e8]2Qq7wV;>=a7D
+        script: java -jar /home/tp_filmotheque-0.0.1-SNAPSHOT.jar
