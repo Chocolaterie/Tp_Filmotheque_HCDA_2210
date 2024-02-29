@@ -2,17 +2,17 @@ name: Build and deploy Java JAR app to Digital Ocean
 
 # Quand executer la tache de déploiement
 on:
+  # Run to deploy-test
   push:
-    branches:
-      - deploy-test
+    branches: ["deploy-test"]
 
 # Les listes des taches
 jobs:
   deploy:
+    name: Deploy to Ubuntu
     runs-on: ubuntu-latest
     
-  # Les etapes de la tâche  
-  steps:
+    steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
