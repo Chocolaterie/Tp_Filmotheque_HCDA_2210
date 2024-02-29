@@ -5,20 +5,10 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Range;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 
-@Entity
 public class Movie {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotBlank(message = "Le titre est obligatoire")
@@ -33,16 +23,12 @@ public class Movie {
 	@NotBlank(message = "Le synopsis est obligatoire")
 	private String synopsis;
 	
-	@ManyToOne
 	private Participant realisator;
 	
-	@ManyToMany
 	private List<Participant> actors = new ArrayList<Participant>();
 	
-	@ManyToOne
 	private Genre genre;
 	
-	@Transient
 	private List<Avis> avis = new ArrayList<Avis>();
 	
 	public Movie(long id, String title, int year, int duration, String synopsis) {
