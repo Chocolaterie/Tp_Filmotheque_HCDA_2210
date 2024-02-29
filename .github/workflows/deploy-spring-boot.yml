@@ -6,6 +6,8 @@ on:
   push:
     branches: ["deploy-test"]
 
+  workflow_dispatch:
+    
 # Les listes des taches
 jobs:
   deploy:
