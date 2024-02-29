@@ -25,7 +25,7 @@ jobs:
         distribution: adopt
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: chmod +x ./gradlew ; ./gradlew build
 
     - name: Deploy to Droplet
       uses: appleboy/ssh-action@master
