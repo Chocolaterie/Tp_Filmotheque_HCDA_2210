@@ -2,11 +2,18 @@ name: Build and deploy Java JAR app to Digital Ocean
 
 # Quand executer la tache de déploiement
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches:
-      - deploy-test
+    branches: ["deploy-test"]
 
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+  # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 # Les listes des taches
 jobs:
